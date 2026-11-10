@@ -16,23 +16,24 @@
     <!-- Nhúng Tailwind CSS qua CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Cấu hình màu sắc Điện ảnh Cổ điển -->
+    <!-- Cấu hình màu sắc Điện ảnh Cổ điển Thập niên cũ -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              cinema: "#09090b" /* Đen rạp chiếu phim */,
-              projector: "#f59e0b" /* Vàng ánh đèn máy chiếu */,
-              curtain: "#991b1b" /* Đỏ rèm nhung sân khấu */,
-              silver: "#e2e8f0" /* Bạc kim loại / màu chữ */,
+              cinema: "#1f1a17" /* Đen nâu phim nhựa cũ */,
+              sepia: "#d4b886" /* Vàng nâu giấy ngả màu/phim cháy */,
+              film: "#594d46" /* Xám nâu nhạt */,
+              lens: "#fef08a" /* Vàng nhạt của ánh sáng ống kính cũ */,
             },
             fontFamily: {
               serif: ['"Lora"', "serif"],
             },
             animation: {
               blob: "blob 8s infinite",
-              flicker: "flicker 3s infinite" /* Hiệu ứng nhấp nháy đèn chiếu */,
+              flicker:
+                "flicker 4s infinite" /* Hiệu ứng nhấp nháy đèn chiếu chậm hơn */,
             },
             keyframes: {
               blob: {
@@ -43,8 +44,9 @@
               },
               flicker: {
                 "0%, 100%": { opacity: 1 },
-                "50%": { opacity: 0.8 },
-                "70%": { opacity: 0.95 },
+                "40%": { opacity: 0.9 },
+                "60%": { opacity: 0.6 },
+                "80%": { opacity: 0.9 },
               },
             },
           },
@@ -52,18 +54,18 @@
       };
     </script>
     <style>
-      /* Lớp CSS cốt lõi Glassmorphism phong cách Cinema */
+      /* Lớp CSS cốt lõi Glassmorphism phong cách Vintage Cinema */
       .glass-cinema {
-        background: rgba(9, 9, 11, 0.65); /* Nền đen trong suốt */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(245, 158, 11, 0.2); /* Viền vàng hổ phách nhạt */
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.9);
+        background: rgba(31, 26, 23, 0.7); /* Nền đen nâu trong suốt */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(212, 184, 134, 0.25); /* Viền màu vàng sepia mờ */
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
       }
 
       .film-border {
-        border-top: 3px solid #f59e0b;
-        box-shadow: 0 -4px 25px -5px rgba(245, 158, 11, 0.3);
+        border-top: 3px solid #d4b886;
+        box-shadow: 0 -4px 25px -5px rgba(212, 184, 134, 0.2);
       }
 
       /* Delay cho khối màu nền */
@@ -74,68 +76,76 @@
         animation-delay: 4s;
       }
 
-      /* Họa tiết dải phim trang trí */
+      /* Họa tiết dải phim trang trí (Đen trắng rõ nét hơn) */
       .film-strip-pattern {
         background-image: repeating-linear-gradient(
           to bottom,
           transparent,
-          transparent 10px,
-          rgba(245, 158, 11, 0.2) 10px,
-          rgba(245, 158, 11, 0.2) 20px
+          transparent 12px,
+          rgba(255, 255, 255, 0.15) 12px,
+          rgba(255, 255, 255, 0.15) 24px
         );
       }
     </style>
   </head>
 
   <body
-    class="bg-cinema text-silver font-serif min-h-screen pb-12 relative overflow-x-hidden selection:bg-projector selection:text-cinema"
+    class="bg-cinema text-gray-300 font-serif min-h-screen pb-12 relative overflow-x-hidden selection:bg-sepia selection:text-cinema"
   >
-    <!-- BACKGROUND CHUYỂN ĐỘNG (Ánh đèn máy chiếu & Rạp phim) -->
+    <!-- BACKGROUND CHUYỂN ĐỘNG (Ánh đèn máy chiếu & Phim ngả màu) -->
     <div
       class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none"
     >
-      <!-- Ánh sáng máy chiếu vàng (Góc trên) -->
+      <!-- Ánh sáng vàng ống kính (Góc trên) -->
       <div
-        class="absolute top-[-15%] left-[20%] w-[500px] h-[500px] bg-projector/15 rounded-full mix-blend-screen filter blur-[100px] opacity-70 animate-blob"
+        class="absolute top-[-15%] left-[10%] w-[500px] h-[500px] bg-lens/10 rounded-full mix-blend-screen filter blur-[100px] opacity-60 animate-blob"
       ></div>
 
-      <!-- Vệt đỏ rèm nhung (Góc phải) -->
+      <!-- Vệt màu Sepia hoài cổ (Góc phải) -->
       <div
-        class="absolute top-[30%] right-[-10%] w-96 h-96 bg-curtain/20 rounded-full mix-blend-screen filter blur-[80px] opacity-50 animate-blob animation-delay-2000"
+        class="absolute top-[30%] right-[-10%] w-96 h-96 bg-sepia/15 rounded-full mix-blend-screen filter blur-[90px] opacity-60 animate-blob animation-delay-2000"
       ></div>
 
-      <!-- Vệt xám bạc (Đáy) -->
+      <!-- Vệt nâu xám khói (Đáy) -->
       <div
-        class="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-white/5 rounded-full mix-blend-screen filter blur-[80px] opacity-60 animate-blob animation-delay-4000"
+        class="absolute bottom-[-15%] left-[5%] w-[400px] h-[400px] bg-film/20 rounded-full mix-blend-screen filter blur-[80px] opacity-50 animate-blob animation-delay-4000"
       ></div>
     </div>
 
     <!-- Header / Tiêu đề chính -->
     <header
-      class="glass-cinema text-center py-10 px-4 relative overflow-hidden shadow-2xl border-b-4 border-b-projector z-10 mx-4 mt-6 rounded-2xl"
+      class="glass-cinema text-center py-10 px-4 relative overflow-hidden shadow-2xl border-b-4 border-b-sepia z-10 mx-4 mt-6 rounded-sm"
     >
       <!-- Cột lỗ dải phim trang trí 2 bên lề header -->
-      <div class="absolute top-0 left-2 w-4 h-full film-strip-pattern"></div>
-      <div class="absolute top-0 right-2 w-4 h-full film-strip-pattern"></div>
+      <div
+        class="absolute top-0 left-2 w-5 h-full film-strip-pattern border-r border-white/5"
+      ></div>
+      <div
+        class="absolute top-0 right-2 w-5 h-full film-strip-pattern border-l border-white/5"
+      ></div>
 
       <div class="relative z-10">
         <!-- Nhãn lĩnh vực -->
-        <div
-          class="inline-block px-4 py-1.5 mb-5 rounded-full border border-projector text-projector text-[11px] md:text-xs font-bold tracking-wider uppercase bg-black/60 shadow-[0_0_15px_rgba(245,158,11,0.3)] animate-flicker"
-        >
-          Đồ dùng học tập / Thuyết trình sáng tạo
+        <div class="block mb-2">
+          <span
+            class="inline-block px-4 py-1.5 rounded-sm border border-sepia/50 text-sepia text-[11px] md:text-xs font-bold tracking-wider uppercase bg-black/60 shadow-sm animate-flicker"
+          >
+            Đồ dùng học tập / Thuyết trình
+          </span>
         </div>
 
-        <h1
-          class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-yellow-200 via-projector to-yellow-700 tracking-widest mb-3 drop-shadow-md uppercase"
-        >
-          Máy Chiếu Phim
-        </h1>
+        <div class="block">
+          <h1
+            class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-lens to-sepia tracking-widest uppercase inline-block py-2 leading-normal filter drop-shadow-md mb-1"
+          >
+            Máy Chiếu Phim
+          </h1>
+        </div>
 
         <div
-          class="flex items-center justify-center gap-2 text-gray-400 text-sm font-semibold uppercase tracking-widest mt-4"
+          class="flex items-center justify-center gap-2 text-sepia/70 text-sm font-semibold uppercase tracking-widest mt-2"
         >
-          <span class="text-xl">🎞️</span>
+          <span class="text-xl opacity-80">🎞️</span>
           <span>Băng Chuyền Ký Ức</span>
         </div>
       </div>
@@ -144,11 +154,21 @@
     <!-- Khối Chèn Ảnh (Tùy chọn) -->
     <!-- Nếu bạn có ảnh thật, thay đổi đường link trong src="" -->
     <div class="max-w-md mx-auto px-5 mt-6 relative z-20">
-      <div class="glass-cinema p-2 rounded-xl border border-white/10 shadow-lg">
+      <div
+        class="glass-cinema p-2 rounded-sm border border-sepia/20 shadow-lg relative"
+      >
+        <!-- Viền họa tiết phim cho khung ảnh -->
+        <div
+          class="absolute top-0 bottom-0 left-1 w-3 film-strip-pattern z-30"
+        ></div>
+        <div
+          class="absolute top-0 bottom-0 right-1 w-3 film-strip-pattern z-30"
+        ></div>
+
         <img
           src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800"
           alt="Mô hình Máy chiếu phim băng chuyền"
-          class="w-full h-48 object-cover rounded-lg grayscale hover:grayscale-0 transition duration-700"
+          class="w-full h-48 object-cover rounded-sm sepia hover:sepia-0 transition duration-1000 brightness-90 contrast-125"
         />
       </div>
     </div>
@@ -156,9 +176,9 @@
     <!-- Nội dung chính -->
     <main class="max-w-md mx-auto px-5 mt-6 relative z-20 space-y-6">
       <!-- Giới thiệu (Thẻ Kính) -->
-      <section class="glass-cinema rounded-xl p-6 relative overflow-hidden">
+      <section class="glass-cinema rounded-sm p-6 relative overflow-hidden">
         <h2
-          class="text-2xl font-bold mb-3 flex items-center gap-2 text-projector border-b border-projector/20 pb-3"
+          class="text-2xl font-bold mb-3 flex items-center gap-2 text-sepia border-b border-sepia/20 pb-3"
         >
           💡 Giới Thiệu
         </h2>
@@ -172,58 +192,58 @@
       </section>
 
       <!-- Nguyên vật liệu (Thẻ Kính) -->
-      <section class="glass-cinema rounded-xl p-6 relative">
+      <section class="glass-cinema rounded-sm p-6 relative">
         <h2
-          class="text-2xl font-bold mb-4 flex items-center gap-2 text-projector border-b border-projector/20 pb-3"
+          class="text-2xl font-bold mb-4 flex items-center gap-2 text-sepia border-b border-sepia/20 pb-3"
         >
           🛠️ Nguyên Vật Liệu
         </h2>
         <ul class="space-y-4 font-medium text-gray-300">
           <li class="flex items-start gap-3">
-            <span class="text-curtain font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-film font-bold text-xl mt-[-2px]">»</span>
             <span
               >Bìa các tông cứng hoặc gỗ ép mỏng (làm khung máy chữ A).</span
             >
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-curtain font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-film font-bold text-xl mt-[-2px]">»</span>
             <span>Ống nhựa PVC nhỏ hoặc lõi giấy (làm trục cuộn).</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-curtain font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-film font-bold text-xl mt-[-2px]">»</span>
             <span>Sơn đen, giấy màu, đề can trang trí.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-curtain font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-film font-bold text-xl mt-[-2px]">»</span>
             <span>Giấy in màu khổ dài (in nội dung "thước phim").</span>
           </li>
         </ul>
       </section>
 
       <!-- Quy trình thực hiện (Thẻ Kính) -->
-      <section class="glass-cinema rounded-xl p-6">
+      <section class="glass-cinema rounded-sm p-6">
         <h2
-          class="text-2xl font-bold mb-6 flex items-center gap-2 text-projector border-b border-projector/20 pb-3"
+          class="text-2xl font-bold mb-6 flex items-center gap-2 text-sepia border-b border-sepia/20 pb-3"
         >
           ⚙️ Quy Trình Thực Hiện
         </h2>
         <div
-          class="space-y-6 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-projector/40 before:to-transparent"
+          class="space-y-6 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[1px] before:bg-gradient-to-b before:from-transparent before:via-sepia/30 before:to-transparent"
         >
           <!-- Bước 1 -->
           <div
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-projector bg-black/80 backdrop-blur-sm text-projector font-bold z-10 font-sans shadow-[0_0_10px_rgba(245,158,11,0.3)]"
+              class="flex items-center justify-center w-8 h-8 rounded-sm border border-sepia/50 bg-cinema backdrop-blur-sm text-sepia font-bold z-10 font-sans shadow-sm"
             >
               1
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-sm bg-white/5 backdrop-blur-sm border border-sepia/10 ml-4 shadow-sm"
             >
               <strong
-                class="text-projector block mb-1 text-sm uppercase tracking-wider"
+                class="text-sepia block mb-1 text-sm uppercase tracking-wider"
                 >Làm khung</strong
               >
               <p class="text-gray-300 text-sm font-medium">
@@ -238,15 +258,15 @@
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-projector bg-black/80 backdrop-blur-sm text-projector font-bold z-10 font-sans shadow-[0_0_10px_rgba(245,158,11,0.3)]"
+              class="flex items-center justify-center w-8 h-8 rounded-sm border border-sepia/50 bg-cinema backdrop-blur-sm text-sepia font-bold z-10 font-sans shadow-sm"
             >
               2
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-sm bg-white/5 backdrop-blur-sm border border-sepia/10 ml-4 shadow-sm"
             >
               <strong
-                class="text-projector block mb-1 text-sm uppercase tracking-wider"
+                class="text-sepia block mb-1 text-sm uppercase tracking-wider"
                 >Làm trục xoay</strong
               >
               <p class="text-gray-300 text-sm font-medium">
@@ -262,15 +282,15 @@
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-projector bg-black/80 backdrop-blur-sm text-projector font-bold z-10 font-sans shadow-[0_0_10px_rgba(245,158,11,0.3)]"
+              class="flex items-center justify-center w-8 h-8 rounded-sm border border-sepia/50 bg-cinema backdrop-blur-sm text-sepia font-bold z-10 font-sans shadow-sm"
             >
               3
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-sm bg-white/5 backdrop-blur-sm border border-sepia/10 ml-4 shadow-sm"
             >
               <strong
-                class="text-projector block mb-1 text-sm uppercase tracking-wider"
+                class="text-sepia block mb-1 text-sm uppercase tracking-wider"
                 >Làm cuộn phim</strong
               >
               <p class="text-gray-300 text-sm font-medium">
@@ -286,15 +306,15 @@
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-curtain bg-black/90 backdrop-blur-sm text-curtain font-bold z-10 font-sans shadow-[0_0_15px_rgba(153,27,27,0.6)]"
+              class="flex items-center justify-center w-8 h-8 rounded-sm border border-sepia bg-sepia/90 backdrop-blur-sm text-cinema font-bold z-10 font-sans shadow-md"
             >
               4
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-curtain/10 backdrop-blur-sm border border-curtain/40 ml-4 shadow-[0_0_15px_rgba(153,27,27,0.15)]"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-sm bg-sepia/10 backdrop-blur-sm border border-sepia/30 ml-4 shadow-sm"
             >
               <strong
-                class="text-curtain block mb-1 text-sm uppercase tracking-wider"
+                class="text-sepia block mb-1 text-sm uppercase tracking-wider"
                 >Lắp ráp</strong
               >
               <p class="text-gray-200 text-sm font-medium">
@@ -309,27 +329,25 @@
 
       <!-- Điểm nổi bật & Ứng dụng (Thẻ Kính) -->
       <section
-        class="glass-cinema rounded-xl p-6 film-border relative overflow-hidden"
+        class="glass-cinema rounded-sm p-6 film-border relative overflow-hidden"
       >
         <!-- Ruy băng góc -->
-        <div
-          class="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-xl"
-        >
+        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
           <div
-            class="bg-projector text-black text-[10px] font-extrabold uppercase tracking-wider py-1 text-center shadow-md transform rotate-45 translate-y-3 translate-x-3 w-24"
+            class="bg-sepia text-cinema text-[10px] font-extrabold uppercase tracking-wider py-1 text-center shadow-md transform rotate-45 translate-y-3 translate-x-3 w-24"
           >
             Nổi Bật
           </div>
         </div>
 
         <h2
-          class="text-2xl font-bold mb-4 flex items-center gap-2 text-projector border-b border-projector/20 pb-3"
+          class="text-2xl font-bold mb-4 flex items-center gap-2 text-sepia border-b border-sepia/20 pb-3"
         >
           ✨ Điểm Nổi Bật
         </h2>
         <div class="space-y-5 font-medium">
           <div>
-            <strong class="text-projector block mb-1 text-lg"
+            <strong class="text-sepia block mb-1 text-lg"
               >Hình thức độc lạ</strong
             >
             <p class="text-gray-300">
@@ -338,9 +356,7 @@
             </p>
           </div>
           <div>
-            <strong class="text-curtain block mb-1 text-lg"
-              >Tương tác tốt</strong
-            >
+            <strong class="text-film block mb-1 text-lg">Tương tác tốt</strong>
             <p class="text-gray-300">
               Rất phù hợp để kể chuyện lịch sử, giới thiệu quá trình phát triển
               dự án hoặc trưng bày infographic trực quan.
@@ -351,11 +367,11 @@
 
       <!-- Tác giả / Lớp -->
       <div
-        class="text-center mt-10 pt-4 pb-6 font-sans border-t border-white/10 relative z-20"
+        class="text-center mt-10 pt-4 pb-6 font-sans border-t border-white/5 relative z-20"
       >
         <p class="text-gray-500 font-medium text-sm mb-1">Dự án STEM 2026</p>
         <p
-          class="text-projector font-bold uppercase tracking-widest drop-shadow-md"
+          class="text-sepia font-bold uppercase tracking-widest drop-shadow-md"
         >
           Thực hiện bởi: Lớp 10A8
         </p>
