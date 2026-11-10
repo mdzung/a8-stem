@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mô Hình Núi Lửa - Lớp 10A8</title>
+
+    <!-- Nhúng font Lora từ Google Fonts hỗ trợ 100% Tiếng Việt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Nhúng Tailwind CSS qua CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Cấu hình màu sắc Núi Lửa (Dung nham & Tro tàn) và hoạt ảnh nền -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              volcano: "#18181b" /* Nền xám tro tối bọc ngoài */,
+              magma: "#ea580c" /* Cam dung nham */,
+              lava: "#dc2626" /* Đỏ rực của lửa */,
+              ash: "#e4e4e7" /* Trắng tro cho chữ dễ đọc */,
+            },
+            fontFamily: {
+              serif: ['"Lora"', "serif"],
+            },
+            animation: {
+              blob: "blob 6s infinite",
+            },
+            keyframes: {
+              blob: {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(25px, -30px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 25px) scale(0.95)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Lớp CSS cốt lõi của Glassmorphism phiên bản Giao diện Tối (Dark Glass) */
+      .glass-dark {
+        background: rgba(24, 24, 27, 0.65); /* Nền tro tối trong suốt 65% */
+        backdrop-filter: blur(12px); /* Làm nhòe dung nham phía sau */
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(234, 88, 12, 0.25); /* Viền màu cam dung nham siêu mỏng */
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8); /* Đổ bóng đen sâu */
+      }
+
+      /* Hiệu ứng viền phát sáng nhẹ cho thẻ Nổi Bật */
+      .magma-border {
+        border-top: 3px solid #ea580c;
+        box-shadow: 0 -4px 20px -5px rgba(234, 88, 12, 0.4);
+      }
+
+      /* Delay cho các khối màu chuyển động */
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-volcano text-ash font-serif min-h-screen pb-12 relative overflow-x-hidden selection:bg-magma selection:text-white"
+  >
+    <!-- BACKGROUND CHUYỂN ĐỘNG (Dung nham nóng chảy) ĐỂ TÔN LÊN KÍNH MỜ -->
+    <div
+      class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none"
+    >
+      <div
+        class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-lava/40 rounded-full mix-blend-screen filter blur-[80px] opacity-80 animate-blob"
+      ></div>
+      <div
+        class="absolute top-[30%] right-[-20%] w-96 h-96 bg-magma/40 rounded-full mix-blend-screen filter blur-[80px] opacity-80 animate-blob animation-delay-2000"
+      ></div>
+      <div
+        class="absolute bottom-[-10%] left-[10%] w-[400px] h-[400px] bg-red-900/50 rounded-full mix-blend-screen filter blur-[100px] opacity-60 animate-blob animation-delay-4000"
+      ></div>
+    </div>
+
+    <!-- Phần Tiêu đề -->
+    <header
+      class="glass-dark text-center py-10 px-4 relative overflow-hidden shadow-2xl border-b-4 border-b-magma z-10 mx-4 mt-6 rounded-2xl"
+    >
+      <div class="relative z-10">
+        <!-- Nhãn lĩnh vực -->
+        <div
+          class="inline-block px-4 py-1.5 mb-5 rounded-full border border-magma text-magma text-xs font-bold tracking-wider uppercase bg-black/40 shadow-[0_0_15px_rgba(234,88,12,0.3)]"
+        >
+          Thí nghiệm Hóa học
+        </div>
+
+        <h1
+          class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-yellow-400 via-magma to-lava tracking-widest mb-3 drop-shadow-sm uppercase"
+        >
+          Núi Lửa
+        </h1>
+
+        <div
+          class="flex items-center justify-center gap-2 text-gray-300 text-sm font-semibold uppercase tracking-widest mt-4"
+        >
+          <span class="text-xl">🌋</span>
+          <span>Mô hình trực quan</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Nội dung chính -->
+    <main class="max-w-md mx-auto px-5 mt-8 relative z-20 space-y-6">
+      <!-- Giới thiệu (Thẻ Kính) -->
+      <section class="glass-dark rounded-xl p-6 relative overflow-hidden">
+        <h2
+          class="text-2xl font-bold mb-3 flex items-center gap-2 text-magma border-b border-white/10 pb-3"
+        >
+          💡 Giới Thiệu
+        </h2>
+        <p class="leading-relaxed text-justify mt-3 text-gray-300 font-medium">
+          Sản phẩm là mô hình núi lửa sống động có khả năng mô phỏng hiện tượng
+          phun trào. Sự kết hợp giữa nghệ thuật tạo hình (tái chế báo cũ) và
+          phản ứng hóa học cơ bản mang đến một trải nghiệm học tập thú vị và
+          trực quan.
+        </p>
+      </section>
+
+      <!-- Nguyên vật liệu (Thẻ Kính) -->
+      <section class="glass-dark rounded-xl p-6 relative">
+        <h2
+          class="text-2xl font-bold mb-4 flex items-center gap-2 text-magma border-b border-white/10 pb-3"
+        >
+          🛠️ Nguyên Vật Liệu
+        </h2>
+        <ul class="space-y-4 font-medium text-gray-300">
+          <li class="flex items-start gap-3">
+            <span class="text-magma font-bold text-xl mt-[-2px]">»</span>
+            <span
+              ><strong class="text-yellow-500 font-normal">Phần vỏ:</strong>
+              Giấy báo cũ, keo sữa, màu nước (nâu, đỏ, đen).</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-magma font-bold text-xl mt-[-2px]">»</span>
+            <span
+              ><strong class="text-yellow-500 font-normal">Phần lõi:</strong>
+              Một chai nhựa nhỏ (đặt ở giữa).</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-magma font-bold text-xl mt-[-2px]">»</span>
+            <span
+              ><strong class="text-yellow-500 font-normal"
+                >Phần dung dịch:</strong
+              >
+              Baking soda, giấm ăn, nước rửa bát, màu thực phẩm (đỏ/cam).</span
+            >
+          </li>
+        </ul>
+      </section>
+
+      <!-- Quy trình thực hiện (Thẻ Kính) -->
+      <section class="glass-dark rounded-xl p-6">
+        <h2
+          class="text-2xl font-bold mb-6 flex items-center gap-2 text-magma border-b border-white/10 pb-3"
+        >
+          ⚙️ Quy Trình Thực Hiện
+        </h2>
+        <div
+          class="space-y-6 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-magma/50 before:to-transparent"
+        >
+          <!-- Bước 1 -->
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+          >
+            <div
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-magma bg-black/80 backdrop-blur-sm text-magma font-bold z-10 font-sans shadow-[0_0_10px_rgba(234,88,12,0.5)]"
+            >
+              1
+            </div>
+            <div
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+            >
+              <strong
+                class="text-yellow-500 block mb-1 text-sm uppercase tracking-wider"
+                >Tạo hình</strong
+              >
+              <p class="text-gray-300 text-sm font-medium">
+                Cố định chai nhựa vào giữa một tấm bìa cứng. Vò báo cũ đắp xung
+                quanh chai nhựa để tạo hình chóp của núi lửa. Cố định bằng băng
+                dính.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bước 2 -->
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+          >
+            <div
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-magma bg-black/80 backdrop-blur-sm text-magma font-bold z-10 font-sans shadow-[0_0_10px_rgba(234,88,12,0.5)]"
+            >
+              2
+            </div>
+            <div
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+            >
+              <strong
+                class="text-yellow-500 block mb-1 text-sm uppercase tracking-wider"
+                >Bồi giấy</strong
+              >
+              <p class="text-gray-300 text-sm font-medium">
+                Pha loãng keo sữa, nhúng các dải báo mỏng vào và đắp lên bề mặt
+                núi lửa. Để khô cứng lại.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bước 3 -->
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+          >
+            <div
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-magma bg-black/80 backdrop-blur-sm text-magma font-bold z-10 font-sans shadow-[0_0_10px_rgba(234,88,12,0.5)]"
+            >
+              3
+            </div>
+            <div
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+            >
+              <strong
+                class="text-yellow-500 block mb-1 text-sm uppercase tracking-wider"
+                >Trang trí</strong
+              >
+              <p class="text-gray-300 text-sm font-medium">
+                Tô màu mô hình cho giống núi lửa thật.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bước 4 -->
+          <div
+            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+          >
+            <div
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-magma bg-black/80 backdrop-blur-sm text-lava font-bold z-10 font-sans shadow-[0_0_15px_rgba(220,38,38,0.8)]"
+            >
+              4
+            </div>
+            <div
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-magma/10 backdrop-blur-sm border border-magma/30 ml-4 shadow-[0_0_15px_rgba(234,88,12,0.15)]"
+            >
+              <strong
+                class="text-lava block mb-1 text-sm uppercase tracking-wider"
+                >Thí nghiệm</strong
+              >
+              <p class="text-gray-200 text-sm font-medium">
+                Cho baking soda, nước rửa bát và màu đỏ vào chai nhựa. Khi cần
+                "phun trào", đổ giấm vào chai và quan sát phản ứng sủi bọt trào
+                ra ngoài.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Điểm nổi bật & Ứng dụng (Thẻ Kính) -->
+      <section
+        class="glass-dark rounded-xl p-6 magma-border relative overflow-hidden"
+      >
+        <!-- Ruy băng góc -->
+        <div
+          class="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-xl"
+        >
+          <div
+            class="bg-magma text-white text-[10px] font-bold uppercase tracking-wider py-1 text-center shadow-md transform rotate-45 translate-y-3 translate-x-3 w-24"
+          >
+            Nổi Bật
+          </div>
+        </div>
+
+        <h2
+          class="text-2xl font-bold mb-4 flex items-center gap-2 text-magma border-b border-white/10 pb-3"
+        >
+          ✨ Điểm Nổi Bật
+        </h2>
+        <div class="space-y-5 font-medium">
+          <div>
+            <strong class="text-yellow-500 block mb-1 text-lg"
+              >Học đi đôi với hành</strong
+            >
+            <p class="text-gray-300">
+              Ứng dụng kiến thức Hóa học (phản ứng axit - bazơ tạo bọt khí CO2)
+              vào thực tế sinh động.
+            </p>
+          </div>
+          <div>
+            <strong class="text-magma block mb-1 text-lg"
+              >Tái chế sáng tạo</strong
+            >
+            <p class="text-gray-300">
+              Tận dụng tối đa rác thải giấy nhựa để bảo vệ môi trường.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tác giả / Lớp -->
+      <div
+        class="text-center mt-10 pt-4 pb-6 font-sans border-t border-white/10 relative z-20"
+      >
+        <p class="text-gray-500 font-medium text-sm mb-1">Dự án STEM 2026</p>
+        <p
+          class="text-magma font-bold uppercase tracking-widest drop-shadow-md"
+        >
+          Thực hiện bởi: Lớp 10A8
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
