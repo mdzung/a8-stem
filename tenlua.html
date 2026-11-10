@@ -16,16 +16,16 @@
     <!-- Nhúng Tailwind CSS qua CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Cấu hình màu sắc Tên lửa (Xanh đen quân sự & Vàng cảnh báo) -->
+    <!-- Cấu hình màu sắc Tên lửa Nước (Đại dương sáng & Xanh ngọc) -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              abyss: "#040b08" /* Nền xanh lục cực tối (Gần như đen) */,
-              radar: "#22c55e" /* Xanh lá sáng của radar/hud */,
-              nuke: "#eab308" /* Vàng cảnh báo phóng tên lửa */,
-              smoke: "#cbd5e1" /* Xám khói cho chữ */,
+              surface: "#e0f2fe" /* Xanh mặt nước cực sáng (Sky 100) */,
+              wave: "#0284c7" /* Xanh dương đậm đà của sóng (Sky 600) */,
+              splash: "#06b6d4" /* Xanh ngọc bọt nước bắn (Cyan 500) */,
+              navy: "#0f172a" /* Xanh đen sâu thẳm cho chữ (chống lóa) */,
             },
             fontFamily: {
               serif: ['"Lora"', "serif"],
@@ -46,22 +46,22 @@
       };
     </script>
     <style>
-      /* Lớp CSS cốt lõi của Glassmorphism phiên bản Bảng điều khiển quân sự */
-      .glass-military {
-        background: rgba(4, 11, 8, 0.75); /* Nền xanh đen trong suốt 75% */
-        backdrop-filter: blur(12px); /* Làm nhòe background phía sau */
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(34, 197, 94, 0.15); /* Viền mờ màu xanh radar */
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.9); /* Đổ bóng sâu */
+      /* Lớp CSS cốt lõi của Glassmorphism phiên bản Mặt Nước Sáng (Water Glass) */
+      .glass-water {
+        background: rgba(255, 255, 255, 0.55); /* Nền trắng trong suốt 55% */
+        backdrop-filter: blur(16px); /* Làm nhòe mạnh mặt nước phía sau */
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9); /* Viền trắng mảnh như bọt nước */
+        box-shadow: 0 10px 30px -10px rgba(2, 132, 199, 0.15); /* Đổ bóng xanh dương trong trẻo */
       }
 
-      /* Hiệu ứng viền vàng cảnh báo cho thẻ Nổi Bật */
-      .nuke-border {
-        border-top: 3px solid #eab308;
-        box-shadow: 0 -4px 25px -5px rgba(234, 179, 8, 0.25);
+      /* Hiệu ứng viền xanh ngọc cho thẻ Nổi Bật */
+      .wave-border {
+        border-top: 3px solid #0284c7;
+        box-shadow: 0 -4px 25px -5px rgba(2, 132, 199, 0.25);
       }
 
-      /* Delay cho các khối màu chuyển động */
+      /* Delay cho các khối màu bọt nước chuyển động */
       .animation-delay-2000 {
         animation-delay: 2s;
       }
@@ -72,48 +72,48 @@
   </head>
 
   <body
-    class="bg-abyss text-smoke font-serif min-h-screen pb-12 relative overflow-x-hidden selection:bg-radar selection:text-white"
+    class="bg-surface text-navy font-serif min-h-screen pb-12 relative overflow-x-hidden selection:bg-splash selection:text-white"
   >
-    <!-- BACKGROUND CHUYỂN ĐỘNG (Radar, Phản lực & Hào quang xanh) -->
+    <!-- BACKGROUND CHUYỂN ĐỘNG (Dòng chảy đại dương & Bọt nước) -->
     <div
       class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none"
     >
-      <!-- Vệt vàng nuke (Góc trên trái) -->
+      <!-- Vệt sóng xanh đậm (Góc trên trái) -->
       <div
-        class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-nuke/20 rounded-full mix-blend-screen filter blur-[80px] opacity-60 animate-blob"
+        class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-400/30 rounded-full mix-blend-multiply filter blur-[80px] opacity-80 animate-blob"
       ></div>
 
-      <!-- Vệt xanh radar (Góc giữa phải) -->
+      <!-- Vệt bọt nước xanh ngọc (Góc giữa phải) -->
       <div
-        class="absolute top-[30%] right-[-10%] w-96 h-96 bg-radar/20 rounded-full mix-blend-screen filter blur-[80px] opacity-60 animate-blob animation-delay-2000"
+        class="absolute top-[30%] right-[-10%] w-96 h-96 bg-cyan-300/40 rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob animation-delay-2000"
       ></div>
 
-      <!-- Vệt xanh lá cây dâng lên từ dưới đáy (Mới được thêm) -->
+      <!-- Vệt nước trong vắt (Dâng lên từ đáy) -->
       <div
-        class="absolute bottom-[-15%] left-[5%] w-[500px] h-[500px] bg-green-600/25 rounded-full mix-blend-screen filter blur-[100px] opacity-70 animate-blob animation-delay-4000"
+        class="absolute bottom-[-15%] left-[5%] w-[500px] h-[500px] bg-sky-300/40 rounded-full mix-blend-multiply filter blur-[100px] opacity-80 animate-blob animation-delay-4000"
       ></div>
     </div>
 
     <!-- Phần Tiêu đề -->
     <header
-      class="glass-military text-center py-10 px-4 relative overflow-hidden shadow-2xl border-b-4 border-b-nuke z-10 mx-4 mt-6 rounded-2xl"
+      class="glass-water text-center py-10 px-4 relative overflow-hidden border-b-4 border-b-wave z-10 mx-4 mt-6 rounded-2xl"
     >
       <div class="relative z-10">
         <!-- Nhãn lĩnh vực -->
         <div
-          class="inline-block px-4 py-1.5 mb-5 rounded-full border border-radar text-radar text-[11px] md:text-xs font-bold tracking-wider uppercase bg-black/50 shadow-[0_0_15px_rgba(34,197,94,0.3)]"
+          class="inline-block px-4 py-1.5 mb-5 rounded-full border border-wave text-wave text-[11px] md:text-xs font-bold tracking-wider uppercase bg-white/70 shadow-sm"
         >
           Vật lý ứng dụng / Đồ chơi khoa học
         </div>
 
         <h1
-          class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-nuke to-radar tracking-widest mb-3 drop-shadow-sm uppercase"
+          class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-wave to-splash tracking-widest mb-3 drop-shadow-sm uppercase"
         >
           Tên Lửa Nước
         </h1>
 
         <div
-          class="flex items-center justify-center gap-2 text-gray-400 text-sm font-semibold uppercase tracking-widest mt-4"
+          class="flex items-center justify-center gap-2 text-navy/70 text-sm font-bold uppercase tracking-widest mt-4"
         >
           <span class="text-xl">🚀</span>
           <span>Mô hình 1 Tầng</span>
@@ -124,13 +124,13 @@
     <!-- Nội dung chính -->
     <main class="max-w-md mx-auto px-5 mt-8 relative z-20 space-y-6">
       <!-- Giới thiệu (Thẻ Kính) -->
-      <section class="glass-military rounded-xl p-6 relative overflow-hidden">
+      <section class="glass-water rounded-xl p-6 relative overflow-hidden">
         <h2
-          class="text-2xl font-bold mb-3 flex items-center gap-2 text-radar border-b border-radar/20 pb-3"
+          class="text-2xl font-bold mb-3 flex items-center gap-2 text-wave border-b border-wave/20 pb-3"
         >
           💡 Giới Thiệu
         </h2>
-        <p class="leading-relaxed text-justify mt-3 text-gray-300 font-medium">
+        <p class="leading-relaxed text-justify mt-3 text-navy/90 font-medium">
           Tên lửa nước là một minh chứng hoàn hảo cho nguyên lý phản lực của
           Newton. Bằng cách sử dụng áp suất không khí nén để đẩy nước ra ngoài,
           mô hình tên lửa 1 tầng này có thể bay lên cao một cách ấn tượng.
@@ -138,62 +138,62 @@
       </section>
 
       <!-- Nguyên vật liệu (Thẻ Kính) -->
-      <section class="glass-military rounded-xl p-6 relative">
+      <section class="glass-water rounded-xl p-6 relative">
         <h2
-          class="text-2xl font-bold mb-4 flex items-center gap-2 text-radar border-b border-radar/20 pb-3"
+          class="text-2xl font-bold mb-4 flex items-center gap-2 text-wave border-b border-wave/20 pb-3"
         >
           🛠️ Nguyên Vật Liệu
         </h2>
-        <ul class="space-y-4 font-medium text-gray-300">
+        <ul class="space-y-4 font-medium text-navy/90">
           <li class="flex items-start gap-3">
-            <span class="text-nuke font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-splash font-bold text-xl mt-[-2px]">»</span>
             <span
               >2 vỏ chai nhựa (loại chai nước ngọt có gas, chịu áp lực
               tốt).</span
             >
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-nuke font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-splash font-bold text-xl mt-[-2px]">»</span>
             <span>Bìa cứng hoặc nhựa mỏng (làm cánh tên lửa).</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-nuke font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-splash font-bold text-xl mt-[-2px]">»</span>
             <span>Băng dính cách điện, keo dán nhựa.</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-nuke font-bold text-xl mt-[-2px]">»</span>
+            <span class="text-splash font-bold text-xl mt-[-2px]">»</span>
             <span>Van xe đạp, nút bần (nút cao su), bơm xe đạp.</span>
           </li>
         </ul>
       </section>
 
       <!-- Quy trình thực hiện (Thẻ Kính) -->
-      <section class="glass-military rounded-xl p-6">
+      <section class="glass-water rounded-xl p-6">
         <h2
-          class="text-2xl font-bold mb-6 flex items-center gap-2 text-radar border-b border-radar/20 pb-3"
+          class="text-2xl font-bold mb-6 flex items-center gap-2 text-wave border-b border-wave/20 pb-3"
         >
           ⚙️ Quy Trình Thực Hiện
         </h2>
         <div
-          class="space-y-6 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-radar/40 before:to-transparent"
+          class="space-y-6 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-wave/40 before:to-transparent"
         >
           <!-- Bước 1 -->
           <div
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-radar bg-black/80 backdrop-blur-sm text-radar font-bold z-10 font-sans shadow-[0_0_10px_rgba(34,197,94,0.3)]"
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-wave bg-white backdrop-blur-sm text-wave font-bold z-10 font-sans shadow-sm"
             >
               1
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/70 backdrop-blur-md border border-white ml-4 shadow-sm"
             >
               <strong
-                class="text-radar block mb-1 text-sm uppercase tracking-wider"
+                class="text-wave block mb-1 text-sm uppercase tracking-wider"
                 >Làm thân</strong
               >
-              <p class="text-gray-300 text-sm font-medium">
+              <p class="text-navy/80 text-sm font-medium">
                 Giữ nguyên 1 chai làm thân chính (buồng áp suất). Cắt phần đầu
                 của chai thứ 2 để ốp lên đáy chai chính, tạo chóp nhọn khí động
                 học.
@@ -206,18 +206,18 @@
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-radar bg-black/80 backdrop-blur-sm text-radar font-bold z-10 font-sans shadow-[0_0_10px_rgba(34,197,94,0.3)]"
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-wave bg-white backdrop-blur-sm text-wave font-bold z-10 font-sans shadow-sm"
             >
               2
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/70 backdrop-blur-md border border-white ml-4 shadow-sm"
             >
               <strong
-                class="text-radar block mb-1 text-sm uppercase tracking-wider"
+                class="text-wave block mb-1 text-sm uppercase tracking-wider"
                 >Làm cánh</strong
               >
-              <p class="text-gray-300 text-sm font-medium">
+              <p class="text-navy/80 text-sm font-medium">
                 Cắt 3-4 cánh ổn định từ bìa cứng/nhựa và dán đều quanh phần đuôi
                 (miệng chai) để tên lửa bay thẳng.
               </p>
@@ -229,18 +229,18 @@
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-radar bg-black/80 backdrop-blur-sm text-radar font-bold z-10 font-sans shadow-[0_0_10px_rgba(34,197,94,0.3)]"
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-wave bg-white backdrop-blur-sm text-wave font-bold z-10 font-sans shadow-sm"
             >
               3
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 ml-4 shadow-sm"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/70 backdrop-blur-md border border-white ml-4 shadow-sm"
             >
               <strong
-                class="text-radar block mb-1 text-sm uppercase tracking-wider"
+                class="text-wave block mb-1 text-sm uppercase tracking-wider"
                 >Làm nút</strong
               >
-              <p class="text-gray-300 text-sm font-medium">
+              <p class="text-navy/80 text-sm font-medium">
                 Khoan một lỗ xuyên qua nút bần, gắn chặt van xe đạp vào đó. Đảm
                 bảo kín khí.
               </p>
@@ -252,18 +252,18 @@
             class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
           >
             <div
-              class="flex items-center justify-center w-8 h-8 rounded-full border border-nuke bg-black/90 backdrop-blur-sm text-nuke font-bold z-10 font-sans shadow-[0_0_15px_rgba(234,179,8,0.6)]"
+              class="flex items-center justify-center w-8 h-8 rounded-full border border-splash bg-white backdrop-blur-sm text-splash font-bold z-10 font-sans shadow-md"
             >
               4
             </div>
             <div
-              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-nuke/10 backdrop-blur-sm border border-nuke/40 ml-4 shadow-[0_0_15px_rgba(234,179,8,0.15)]"
+              class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-cyan-50/80 backdrop-blur-md border border-splash/30 ml-4 shadow-sm"
             >
               <strong
-                class="text-nuke block mb-1 text-sm uppercase tracking-wider"
+                class="text-splash block mb-1 text-sm uppercase tracking-wider"
                 >Vận hành</strong
               >
-              <p class="text-gray-200 text-sm font-medium">
+              <p class="text-navy/90 text-sm font-medium">
                 Đổ nước khoảng 1/3 chai, nhét nút bần có gắn van vào miệng chai.
                 Dùng bơm bơm khí vào đến khi áp suất đủ lớn đẩy bật nút bần, tên
                 lửa sẽ phóng lên.
@@ -275,39 +275,39 @@
 
       <!-- Điểm nổi bật & Ứng dụng (Thẻ Kính) -->
       <section
-        class="glass-military rounded-xl p-6 nuke-border relative overflow-hidden"
+        class="glass-water rounded-xl p-6 wave-border relative overflow-hidden"
       >
         <!-- Ruy băng góc -->
         <div
           class="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-xl"
         >
           <div
-            class="bg-nuke text-black text-[10px] font-extrabold uppercase tracking-wider py-1 text-center shadow-md transform rotate-45 translate-y-3 translate-x-3 w-24"
+            class="bg-wave text-white text-[10px] font-bold uppercase tracking-wider py-1 text-center shadow-md transform rotate-45 translate-y-3 translate-x-3 w-24"
           >
             Nổi Bật
           </div>
         </div>
 
         <h2
-          class="text-2xl font-bold mb-4 flex items-center gap-2 text-nuke border-b border-nuke/20 pb-3"
+          class="text-2xl font-bold mb-4 flex items-center gap-2 text-wave border-b border-wave/20 pb-3"
         >
           ✨ Điểm Nổi Bật
         </h2>
         <div class="space-y-5 font-medium">
           <div>
-            <strong class="text-radar block mb-1 text-lg"
+            <strong class="text-splash block mb-1 text-lg"
               >Ứng dụng Vật lý</strong
             >
-            <p class="text-gray-300">
+            <p class="text-navy/90">
               Minh họa sinh động Định luật III Newton về lực và phản lực thông
               qua cơ chế khí nén đẩy nước.
             </p>
           </div>
           <div>
-            <strong class="text-nuke block mb-1 text-lg"
+            <strong class="text-wave block mb-1 text-lg"
               >Hoạt động Giải trí</strong
             >
-            <p class="text-gray-300">
+            <p class="text-navy/90">
               Sản phẩm phù hợp cho các cuộc thi bắn tên lửa nước ngoài trời hoặc
               các buổi ngoại khóa sôi động.
             </p>
@@ -317,12 +317,10 @@
 
       <!-- Tác giả / Lớp -->
       <div
-        class="text-center mt-10 pt-4 pb-6 font-sans border-t border-white/5 relative z-20"
+        class="text-center mt-10 pt-4 pb-6 font-sans border-t border-wave/10 relative z-20"
       >
-        <p class="text-gray-600 font-medium text-sm mb-1">Dự án STEM 2026</p>
-        <p
-          class="text-radar font-bold uppercase tracking-widest drop-shadow-md"
-        >
+        <p class="text-navy/50 font-medium text-sm mb-1">Dự án STEM 2026</p>
+        <p class="text-wave font-bold uppercase tracking-widest drop-shadow-sm">
           Thực hiện bởi: Lớp 10A8
         </p>
       </div>
