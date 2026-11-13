@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cụm Trống Gỗ - Lớp 10A8</title>
+
+    <!-- Nhúng font Lora từ Google Fonts hỗ trợ 100% Tiếng Việt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Nhúng Tailwind CSS qua CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Cấu hình màu sắc Cụm Trống Gỗ (Ký ức & Hoài niệm) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              heritage: "#1a0d0a", /* Nền nâu đen gỗ gụ cực sâu */
+              maroon: "#7f1d1d", /* Đỏ đô / Burgundy */
+              oak: "#92400e", /* Nâu gỗ sồi */
+              copper: "#d97706", /* Vàng đồng của đinh ghim/viền */
+              ivory: "#fef3c7", /* Vàng ngà/Be của mặt trống cũ cho chữ */
+            },
+            fontFamily: {
+              serif: ['"Lora"', "serif"],
+            },
+            animation: {
+              blob: "blob 7s infinite",
+            },
+            keyframes: {
+              blob: {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(20px, -40px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Lớp CSS Glassmorphism phong cách Gỗ Quý (Heritage Glass) */
+      .glass-heritage {
+        background: rgba(26, 13, 10, 0.7); /* Nền nâu gỗ trong suốt */
+        backdrop-filter: blur(14px); 
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(217, 119, 6, 0.25); /* Viền màu vàng đồng mờ */
+        box-shadow: 0 10px 40px -10px rgba(127, 29, 29, 0.4); /* Đổ bóng đỏ đô sâu */
+      }
+
+      /* Hiệu ứng viền vàng đồng cho thẻ Nổi Bật */
+      .copper-border {
+        border-top: 3px solid #d97706;
+        box-shadow: 0 -5px 30px -5px rgba(217, 119, 6, 0.3);
+      }
+
+      /* Delay cho khối màu nền */
+      .animation-delay-2000 { animation-delay: 2s; }
+      .animation-delay-4000 { animation-delay: 4s; }
+    </style>
+  </head>
+
+  <body class="bg-heritage text-ivory font-serif min-h-screen pb-12 relative overflow-x-hidden selection:bg-copper selection:text-heritage">
+    
+    <!-- BACKGROUND CHUYỂN ĐỘNG (Đỏ đô & Vàng đồng) -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <!-- Vệt Đỏ đô -->
+      <div class="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-maroon/40 rounded-full mix-blend-screen filter blur-[90px] opacity-70 animate-blob"></div>
+      <!-- Vệt Nâu sồi -->
+      <div class="absolute top-[40%] right-[-10%] w-[400px] h-[400px] bg-oak/40 rounded-full mix-blend-screen filter blur-[90px] opacity-60 animate-blob animation-delay-2000"></div>
+      <!-- Vệt Vàng đồng -->
+      <div class="absolute bottom-[-15%] left-[10%] w-[500px] h-[500px] bg-copper/20 rounded-full mix-blend-screen filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Phần Tiêu đề -->
+    <header class="glass-heritage text-center py-10 px-4 relative overflow-hidden border-b-4 border-b-copper z-10 mx-4 mt-6 rounded-2xl">
+      <div class="relative z-10">
+        <!-- Nhãn lĩnh vực -->
+        <div class="block mb-2">
+          <span class="inline-block px-4 py-1.5 rounded-full border border-copper text-copper text-[11px] md:text-xs font-bold tracking-wider uppercase bg-black/60 shadow-[0_0_15px_rgba(217,119,6,0.3)]">
+            Mô hình nghệ thuật / Ký ức
+          </span>
+        </div>
+
+        <!-- Chữ Gradient lấp lánh đã fix lỗi rớt dấu bằng py-2 và inline-block -->
+        <div class="block">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-ivory via-copper to-maroon tracking-widest uppercase inline-block py-2 leading-normal filter drop-shadow-md mb-1">
+            Cụm Trống Gỗ
+          </h1>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 text-ivory/70 text-sm font-bold uppercase tracking-widest mt-2">
+          <span class="text-xl">🥁</span>
+          <span>Âm Vang Học Đường</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Nội dung chính -->
+    <main class="max-w-md mx-auto px-5 mt-8 relative z-20 space-y-6">
+      
+      <!-- Giới thiệu (Thẻ Kính) -->
+      <section class="glass-heritage rounded-xl p-6 relative overflow-hidden">
+        <h2 class="text-2xl font-bold mb-3 flex items-center gap-2 text-copper border-b border-copper/20 pb-3">
+          💡 Giới Thiệu
+        </h2>
+        <p class="leading-relaxed text-justify mt-3 text-ivory/90 font-medium">
+          Lấy cảm hứng từ âm vang quen thuộc của tuổi học trò, cụm trống gỗ nghệ thuật là một mô hình trưng bày độc đáo. Sản phẩm nổi bật với bố cục gồm 3 chiếc trống bằng gỗ được xếp đan xen hai bên trái – phải, vươn dần từ dưới lên trên. Thiết kế zíc-zắc này không chỉ tạo hiệu ứng thị giác sinh động, nhịp nhàng mà còn tượng trưng cho sự tiếp nối các thế hệ.
+        </p>
+      </section>
+
+      <!-- Nguyên vật liệu (Thẻ Kính) -->
+      <section class="glass-heritage rounded-xl p-6 relative">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-copper border-b border-copper/20 pb-3">
+          🛠️ Nguyên Vật Liệu
+        </h2>
+        <ul class="space-y-4 font-medium text-ivory/90">
+          <li class="flex items-start gap-3">
+            <span class="text-maroon font-bold text-xl mt-[-2px]">»</span>
+            <span><strong class="text-copper font-bold">Thân trống:</strong> Gỗ ép mỏng, ván lạng hoặc các ống trụ tròn.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-maroon font-bold text-xl mt-[-2px]">»</span>
+            <span><strong class="text-copper font-bold">Mặt trống:</strong> Vải canvas, giả da hoặc giấy bồi cứng.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-maroon font-bold text-xl mt-[-2px]">»</span>
+            <span><strong class="text-copper font-bold">Phụ kiện:</strong> Trụ đỡ bằng gỗ lõi cứng, keo dán, đinh ghim, dây thừng (dây da lộn).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-maroon font-bold text-xl mt-[-2px]">»</span>
+            <span><strong class="text-copper font-bold">Bề mặt:</strong> Sơn acrylic, vecni (tạo độ bóng và màu gỗ).</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Quy trình thực hiện (Thẻ Kính) -->
+      <section class="glass-heritage rounded-xl p-6">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 text-copper border-b border-copper/20 pb-3">
+          ⚙️ Quy Trình Thực Hiện
+        </h2>
+        <div class="space-y-6 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-copper/50 before:to-transparent">
+          
+          <!-- Bước 1 -->
+          <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-copper bg-heritage backdrop-blur-sm text-copper font-bold z-10 font-sans shadow-sm">1</div>
+            <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 ml-4 shadow-sm">
+              <strong class="text-copper block mb-1 text-sm uppercase tracking-wider">Tạo hình trống</strong>
+              <p class="text-ivory/80 text-sm font-medium">Cuốn ván lạng hoặc dùng ống trụ cố định để làm thân cho 3 chiếc trống. Căng thật phẳng lớp giả da hoặc vải canvas lên mặt trống và dùng đinh ghim cố định xung quanh.</p>
+            </div>
+          </div>
+
+          <!-- Bước 2 -->
+          <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-copper bg-heritage backdrop-blur-sm text-copper font-bold z-10 font-sans shadow-sm">2</div>
+            <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 ml-4 shadow-sm">
+              <strong class="text-copper block mb-1 text-sm uppercase tracking-wider">Chốt viền trang trí</strong>
+              <p class="text-ivory/80 text-sm font-medium">Dùng dây thừng nhỏ bọc quanh viền mặt trống hoặc đan chéo dọc theo thân trống để che đi các vết ghim, tăng thêm độ mộc mạc và chắc chắn.</p>
+            </div>
+          </div>
+
+          <!-- Bước 3 -->
+          <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-copper bg-heritage backdrop-blur-sm text-copper font-bold z-10 font-sans shadow-sm">3</div>
+            <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 ml-4 shadow-sm">
+              <strong class="text-copper block mb-1 text-sm uppercase tracking-wider">Xây dựng bệ đỡ</strong>
+              <p class="text-ivory/80 text-sm font-medium">Cố định một trục đỡ trung tâm thật vững chãi lên một đế gỗ phẳng để chuẩn bị lên khung cho cụm mô hình.</p>
+            </div>
+          </div>
+
+          <!-- Bước 4 (Highlight) -->
+          <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-maroon bg-copper text-heritage font-bold z-10 font-sans shadow-[0_0_15px_rgba(217,119,6,0.6)]">4</div>
+            <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-lg bg-maroon/20 backdrop-blur-md border border-copper/50 ml-4 shadow-[0_0_20px_rgba(127,29,29,0.3)]">
+              <strong class="text-copper block mb-1 text-sm uppercase tracking-wider">Lắp ráp bố cục</strong>
+              <p class="text-ivory text-sm font-medium">Lần lượt gắn 3 chiếc trống lên trục đỡ. Chiếc dưới cùng nghiêng trái, chiếc giữa hất phải, và chiếc trên cùng hướng trái tạo cấu trúc đan chéo thăng bằng.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Điểm nổi bật & Ứng dụng (Thẻ Kính) -->
+      <section class="glass-heritage rounded-xl p-6 copper-border relative overflow-hidden">
+        <!-- Ruy băng góc -->
+        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-xl">
+          <div class="bg-copper text-heritage text-[10px] font-extrabold uppercase tracking-wider py-1 text-center shadow-md transform rotate-45 translate-y-3 translate-x-3 w-24">
+            Nổi Bật
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-copper border-b border-copper/20 pb-3">
+          ✨ Điểm Nổi Bật
+        </h2>
+        <div class="space-y-5 font-medium">
+          <div>
+            <strong class="text-copper block mb-1 text-lg">Bố cục đa chiều</strong>
+            <p class="text-ivory/80">Cách sắp xếp đan xen trái - phải giúp mô hình có chiều sâu, phá vỡ sự nhàm chán của các bục trưng bày tĩnh thông thường.</p>
+          </div>
+          <div>
+            <strong class="text-maroon block mb-1 text-lg">Biểu tượng truyền thống</strong>
+            <p class="text-ivory/80">Tiếng trống trường là linh hồn của trường học, cực kỳ ý nghĩa để trưng bày trong các gian hàng hội trại hoặc lễ kỷ niệm.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tác giả / Lớp -->
+      <div class="text-center mt-10 pt-4 pb-6 font-sans border-t border-copper/20 relative z-20">
+        <p class="text-ivory/50 font-medium text-sm mb-1">Dự án STEM 2026</p>
+        <p class="text-copper font-bold uppercase tracking-widest drop-shadow-md">
+          Thực hiện bởi: Lớp 10A8
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
